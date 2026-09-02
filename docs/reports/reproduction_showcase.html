@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>策略复现成果总览</title>
+  <style>
+    :root { --ink:#17202a; --muted:#637083; --line:#dce3ea; --paper:#fff; --wash:#f4f7fa; --blue:#285f9e; --green:#16745b; --gold:#9a6a13; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--wash); font:15px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif; }
+    main { max-width:1120px; margin:40px auto; padding:0 22px 60px; }
+    header, section { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:28px; margin:0 0 20px; box-shadow:0 4px 16px rgba(25,45,70,.05); }
+    h1 { margin:0 0 8px; font-size:30px; }
+    h2 { margin:0 0 16px; font-size:21px; }
+    h3 { margin:0 0 7px; font-size:17px; }
+    p { margin:7px 0; }
+    .subtitle,.note { color:var(--muted); }
+    .badge { display:inline-block; margin:2px 5px 2px 0; padding:3px 9px; border-radius:999px; background:#eaf1fa; color:var(--blue); font-size:12px; font-weight:650; }
+    .badge.proxy { background:#fff3dc; color:var(--gold); }
+    .badge.base { background:#e8f5f0; color:var(--green); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+    .card { border:1px solid var(--line); border-radius:11px; padding:17px; }
+    .metrics { display:grid; grid-template-columns:repeat(2,1fr); gap:7px 13px; margin-top:13px; }
+    .metric span { display:block; color:var(--muted); font-size:12px; }
+    .metric strong { font-size:18px; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; min-width:760px; }
+    th,td { border-bottom:1px solid var(--line); padding:10px 9px; text-align:right; white-space:nowrap; }
+    th:first-child,td:first-child,th:nth-child(2),td:nth-child(2) { text-align:left; }
+    th { color:var(--muted); font-size:12px; }
+    .callout { border-left:4px solid var(--blue); padding:8px 14px; background:#f5f9fd; }
+    footer { color:var(--muted); text-align:center; font-size:13px; }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>策略复现成果总览</h1>
+    <p class="subtitle">依据完整研究环境中留存的最终 HTML、CSV 与 JSON 报告重新汇总；不包含授权数据、访问接口、专属证券清单或本地路径。</p>
+    <p><span class="badge">原始数据重建</span><span class="badge proxy">代理复现</span><span class="badge base">策略基准</span></p>
+  </header>
+
+  <section>
+    <h2>核心成果</h2>
+    <div class="grid">
+      <article class="card">
+        <h3>多元配置全天候</h3><span class="badge">点时 ETF 池重建</span>
+        <p class="note">2017-01—2025-07，双边费率0.10%</p>
+        <div class="metrics"><div class="metric"><span>年化收益</span><strong>5.30%</strong></div><div class="metric"><span>年化波动</span><strong>2.98%</strong></div><div class="metric"><span>最大回撤</span><strong>2.74%</strong></div><div class="metric"><span>Sharpe</span><strong>1.78</strong></div></div>
+        <p class="note">102个月；月胜率67.65%；平均月换手5.43%。</p>
+      </article>
+      <article class="card">
+        <h3>利率综合择时</h3><span class="badge proxy">代理复现</span>
+        <p class="note">2018-01—2026-05</p>
+        <div class="metrics"><div class="metric"><span>年化收益</span><strong>2.94%</strong></div><div class="metric"><span>最大回撤</span><strong>3.27%</strong></div><div class="metric"><span>Sharpe</span><strong>1.43</strong></div><div class="metric"><span>日频观测</span><strong>2,099</strong></div></div>
+        <p class="note">宏观预期、资金条件、交易结构三类信号及可用日期校验已跑通。</p>
+      </article>
+      <article class="card">
+        <h3>全球多资产 ERC</h3><span class="badge base">策略基准</span>
+        <p class="note">2018-01—2026-06，费率0.03%</p>
+        <div class="metrics"><div class="metric"><span>年化收益</span><strong>8.61%</strong></div><div class="metric"><span>年化波动</span><strong>7.66%</strong></div><div class="metric"><span>最大回撤</span><strong>13.94%</strong></div><div class="metric"><span>Sharpe</span><strong>1.16</strong></div></div>
+        <p class="note">月度调仓，按等风险贡献分配资产权重。</p>
+      </article>
+      <article class="card">
+        <h3>三资产逆波动率</h3><span class="badge base">策略基准</span>
+        <p class="note">2018-01—2026-06，费率0.03%</p>
+        <div class="metrics"><div class="metric"><span>年化收益</span><strong>4.73%</strong></div><div class="metric"><span>年化波动</span><strong>2.49%</strong></div><div class="metric"><span>最大回撤</span><strong>2.53%</strong></div><div class="metric"><span>Sharpe</span><strong>1.95</strong></div></div>
+        <p class="note">用于检验复杂资产配置模型是否真正优于简单低波动基线。</p>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>完整结果表</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>研究</th><th>分级</th><th>样本</th><th>年化收益</th><th>年化波动</th><th>最大回撤</th><th>Sharpe</th></tr></thead>
+      <tbody>
+        <tr><td>多元配置全天候（点时ETF池）</td><td>原始数据重建</td><td>2017-01—2025-07</td><td>5.30%</td><td>2.98%</td><td>2.74%</td><td>1.78</td></tr>
+        <tr><td>利率综合择时</td><td>代理复现</td><td>2018-01—2026-05</td><td>2.94%</td><td>—</td><td>3.27%</td><td>1.43</td></tr>
+        <tr><td>久期轮动</td><td>代理复现</td><td>2018-01—2026-05</td><td>5.61%</td><td>—</td><td>9.32%</td><td>1.31</td></tr>
+        <tr><td>中国全天候ETF短样本</td><td>策略基准</td><td>2023-07—2026-07</td><td>9.76%</td><td>7.29%</td><td>7.59%</td><td>1.36</td></tr>
+        <tr><td>中国全天候指数代理长样本</td><td>代理复现</td><td>2013-12—2026-07</td><td>7.66%</td><td>5.97%</td><td>7.59%</td><td>1.31</td></tr>
+        <tr><td>全球多资产ERC</td><td>策略基准</td><td>2018-01—2026-06</td><td>8.61%</td><td>7.66%</td><td>13.94%</td><td>1.16</td></tr>
+        <tr><td>三资产逆波动率</td><td>策略基准</td><td>2018-01—2026-06</td><td>4.73%</td><td>2.49%</td><td>2.53%</td><td>1.95</td></tr>
+        <tr><td>3:6:1固定配置</td><td>策略基准</td><td>2018-01—2026-06</td><td>5.16%</td><td>6.10%</td><td>9.12%</td><td>0.89</td></tr>
+        <tr><td>3:6:1趋势调整</td><td>策略基准</td><td>2018-01—2026-06</td><td>5.33%</td><td>6.03%</td><td>9.44%</td><td>0.93</td></tr>
+        <tr><td>股债商品黄金固定配置</td><td>策略基准</td><td>2018-01—2026-07</td><td>7.72%</td><td>10.98%</td><td>17.41%</td><td>0.76</td></tr>
+        <tr><td>宏观因子风险平价</td><td>代理复现</td><td>2014-01—2024-04</td><td>4.96%</td><td>9.35%</td><td>22.58%</td><td>0.58</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section>
+    <h2>复现差异与可信度</h2>
+    <div class="callout"><strong>复现不是把结果调到一样。</strong> 利率研究中，交易结构子策略的复现年化收益为3.86%，参考值为3.89%；综合择时为2.94%，参考值为3.30%。久期轮动则仍有明显差距，已作为待解释结果保留。</div>
+    <p>点时检查覆盖宏观数据可用日期、下一期收益错位、日期唯一性、信号完整性和净值有效性。代理序列、ETF上市历史、指数拼接与交易价格口径仍可能造成差异。</p>
+  </section>
+
+  <section>
+    <h2>参数探索披露</h2>
+    <p>研究环境支持批量参数与算法比较。一次探索完成464/465组实验，其中257组满足预设阈值；另有60日、120日ERC等方案在同一历史样本上取得较高指标。</p>
+    <p class="note">这些是样本内筛选结果，存在多重检验和过拟合风险。它们只证明实验、筛选与归档工具已实现，不构成样本外有效证据。</p>
+  </section>
+
+  <section>
+    <h2>公开范围</h2>
+    <p>本页为重新生成的脱敏总览。原始 HTML 未公开，因为其中包含受授权约束的数据痕迹、特定材料称谓、证券清单、本地路径和可反推输入数据的逐期明细。详细方法、费用敏感性及限制请阅读同目录上级的 <code>reproduction_results.md</code>。</p>
+  </section>
+
+  <footer>历史回测与方法复现仅用于研究展示，不构成投资建议。</footer>
+</main>
+</body>
+</html>
