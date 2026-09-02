@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "financial-research-framework"
+version = "0.1.0"
+description = "A reproducible and auditable quantitative research framework"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0,<3",
+    "pyarrow>=14",
+    "duckdb>=1.0",
+]
+
+[project.optional-dependencies]
+report = ["matplotlib>=3.7", "tabulate>=0.9"]
+backtest = [
+    "bt>=1.2,<2",
+    "backtrader>=1.9.78,<2",
+]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+]
+
+[tool.setuptools.packages.find]
+include = ["data_providers*", "backtest_adapters*", "factors*", "portfolio*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]

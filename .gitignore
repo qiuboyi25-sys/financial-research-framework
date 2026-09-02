@@ -1,0 +1,27 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+
+# Never commit market data, caches, generated reports, or credentials.
+data/
+output/
+outputs/
+*.parquet
+*.feather
+*.arrow
+*.ipc
+*.duckdb
+*.db
+*.secret
+*.token
+*.pem
+*.key
